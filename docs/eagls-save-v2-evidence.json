@@ -1,0 +1,246 @@
+{
+  "profile": "eagls-v2.0-pe1.5.0.0",
+  "partial_schema": true,
+  "fixture_policy": "Synthetic examples only; no real saves or decrypted player state are distributed.",
+  "settings_unresolved_resolution": {
+    "0xc0228": {
+      "meaning": "MMX image-operation branch",
+      "evidence": [
+        "0x41EFC0..0x41EFEC",
+        "0x407060..0x407092",
+        "0x413FB9",
+        "0x415EAA"
+      ]
+    },
+    "0xc022c": {
+      "meaning": "SSE image-operation branch; previous allocation label withdrawn",
+      "evidence": [
+        "0x41EFD1..0x41F0A6",
+        "0x4059E0..0x4059F1"
+      ]
+    },
+    "0xc0208": {
+      "meaning": "legacy UI flag; original and repair dialog106 both lack1034/1035",
+      "limitation": "Business purpose unknown; UI read/write exists."
+    },
+    "0xc01e0": {
+      "meaning": "unresolved/reserved candidate",
+      "limitation": "No direct code references found; indirect use not excluded."
+    }
+  },
+  "execution_call_frame_schema": {
+    "context_offset": "0x12df8c",
+    "context_stride": "0x4e94",
+    "contexts": 5,
+    "call_depth_offset": "0x104c",
+    "block_flags_offset": "0x1050",
+    "block_cursors_offset": "0x1090",
+    "block_depth_offset": "0x10d0",
+    "call_frames_offset": "0x10d4",
+    "call_frame_stride": "0x3dc",
+    "call_frame_count": 16,
+    "frame_return_cursor_offset": "0x0",
+    "frame_flags_offset": "0x354",
+    "frame_block_depth_offset": "0x394",
+    "frame_block_cursors_offset": "0x398",
+    "push_evidence": "0x4272E8..0x42747C",
+    "pop_evidence": "0x427510..0x4276E5",
+    "validation": "Static code and independent report crosscheck; arbitrary stack edits not load-tested.",
+    "conditional_chain": {
+      "profile": "eagls-v2.0-pe1.5.0.0",
+      "category": "VM conditional-chain execution state; not story progression",
+      "context_relative_flag_base": "0x1050",
+      "count": 16,
+      "word_size": 4,
+      "depth_offset": "0x10d0",
+      "byte_cursor_table": "0x1090",
+      "command_handlers": {
+        "120": "0x42aa2d",
+        "121": "0x42ac66",
+        "122": "0x42adcb"
+      },
+      "meaning": "Per-nesting branch-already-taken latch for if/else-if/else control flow",
+      "evidence": {
+        "120": "0x42AA67 evaluates condition; false42AA8A writes0 then skips balanced braces; true42ABC3 writes1. Cursor reset to-1 in both paths.",
+        "121": "0x42AC96 tests latch1 and skips else body; otherwise42ADA6 writes1,42ADB4 clears cursor,42ADBF enters block nesting.",
+        "122": "0x42AE05 evaluates expression; false skips; true42AE26 additionally requires latch!=1 before42AE3B sets1; otherwise skip branch."
+      },
+      "limits": [
+        "Static interpretation corroborated by script syntax only, no arbitrary jump/state edits.",
+        "Flags are interpreter chain latches, not per-character event completion bits.",
+        "This does not fully decode expression evaluation, loops, block parser or unknown call-frame regions."
+      ]
+    }
+  },
+  "calibration_static_mapping": [
+    {
+      "name": "FadeTime",
+      "engine_va": "0xd423ec",
+      "global_offset": "0xc023c",
+      "dialog": 140,
+      "edit_control_id": 1119,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    },
+    {
+      "name": "WipeTime",
+      "engine_va": "0xd423f0",
+      "global_offset": "0xc0240",
+      "dialog": 140,
+      "edit_control_id": 1120,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    },
+    {
+      "name": "DitherTime",
+      "engine_va": "0xd42410",
+      "global_offset": "0xc0260",
+      "dialog": 140,
+      "edit_control_id": 1121,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    },
+    {
+      "name": "Blind1Time",
+      "engine_va": "0xd423f4",
+      "global_offset": "0xc0244",
+      "dialog": 140,
+      "edit_control_id": 1122,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    },
+    {
+      "name": "Blind2Time",
+      "engine_va": "0xd42414",
+      "global_offset": "0xc0264",
+      "dialog": 140,
+      "edit_control_id": 1123,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    },
+    {
+      "name": "Curtain1Time",
+      "engine_va": "0xd42400",
+      "global_offset": "0xc0250",
+      "dialog": 140,
+      "edit_control_id": 1124,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    },
+    {
+      "name": "Curtain2Time",
+      "engine_va": "0xd42404",
+      "global_offset": "0xc0254",
+      "dialog": 140,
+      "edit_control_id": 1125,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    },
+    {
+      "name": "Scroll1Time",
+      "engine_va": "0xd423f8",
+      "global_offset": "0xc0248",
+      "dialog": 140,
+      "edit_control_id": 1126,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    },
+    {
+      "name": "Scroll2Time",
+      "engine_va": "0xd423fc",
+      "global_offset": "0xc024c",
+      "dialog": 140,
+      "edit_control_id": 1127,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    },
+    {
+      "name": "MozaicTime",
+      "engine_va": "0xd42408",
+      "global_offset": "0xc0258",
+      "dialog": 140,
+      "edit_control_id": 1128,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    },
+    {
+      "name": "FlashTime",
+      "engine_va": "0xd4240c",
+      "global_offset": "0xc025c",
+      "dialog": 140,
+      "edit_control_id": 1129,
+      "evidence": "0x452B1A..0x452B97 read to temporary array; 0x452BE6..0x452C94 writes on dialog close",
+      "domain": "Manual dialog normalizes values <=0 to1; units are engine calibration values, not proven milliseconds.",
+      "confidence": "FadeTime: UI3->4, restart persisted and GlobalSave verified; other10 fields static"
+    }
+  ],
+  "local_symbol_probe_metadata": {
+    "numeric_offset": "0x71ebc",
+    "string_offset": "0x79800",
+    "meaning": "historical maximum hash probe count, not live variable count",
+    "insert_update_evidence": "0x42F358..0x42F360",
+    "lookup_bound_evidence": "0x42F47B..0x42F486",
+    "primary_hash": "fold with multiplier96 and subtract32",
+    "secondary_hash": "fold with multiplier118 and subtract19",
+    "limitations": "Verified local ASCII symbols only. Global @ symbols use linear lookup in this build."
+  },
+  "character_layer_flags": {
+    "profile": "eagls-v2.0-pe1.5.0.0",
+    "count": {
+      "source": "EAGLS.ini MaxCharLayer",
+      "default": 20,
+      "live_va": "0x681D78",
+      "evidence": "0x42E53B..42E560 reads key at0x484FA4 then stores result"
+    },
+    "stride": "0x14c",
+    "coordinate_reference": "The prior0xA7500 base points to the inner image field; outer per-layer record starts0xA74FC.",
+    "outer_record_base": "0xa74fc",
+    "fields": [
+      {
+        "relative": "0x00",
+        "va": "0x72A28C+i*0x14C",
+        "meaning": "render enable byte; compared exactly1",
+        "writes_set": "0x42D76E",
+        "writes_clear": "0x42D9A0",
+        "read": "0x4335E6"
+      },
+      {
+        "relative": "0x04",
+        "meaning": "image resource index u16 used during rendering/reconstruction"
+      },
+      {
+        "relative": "0x2c",
+        "va": "0x72A2B8+i*0x14C",
+        "meaning": "reconstruction enable byte; compared exactly1 when loading",
+        "writes_set": [
+          "0x42CBEE",
+          "0x42D2C5"
+        ],
+        "writes_clear": "0x42D969",
+        "read": "0x41FE00 source saved pointer +0xA7528"
+      }
+    ],
+    "script_commands": {
+      "set_render_enabled": 156,
+      "clear_both": 158,
+      "resource_setup": 152,
+      "conditional_update": 155
+    },
+    "limits": [
+      "Do not conflate outer render-enable atA74FC with reconstruction-enable atA7528.",
+      "Counter usesMaxCharLayer, not the sum of all plane/layer configuration limits.",
+      "Character-layer is an engine config name; no claim all records are portraits or that this reserved subsystem is used by EAGLS v2.0.",
+      "No image content inspected; no field edited; generic main/child layer state remains partially unparsed."
+    ]
+  }
+}

@@ -46,6 +46,7 @@ flowchart TD
 - `src/codec/`：DAT 解密与结构校验、GR 编码与解码（前缀加解密、LZSS、BMP 校验与规范化）、PE32 解析与 EAGLS.exe / SAIMIN.exe 中文补丁定位（按特征码自动识别编译版本）。
   `exe_patch.cpp` 处理基础补丁和等长字节块状态；`exe_typography.cpp` 处理可选中文排版，私有 `exe_typography_profile.hpp` 保存已核对的原版指令窗口。只重写原比较块和字体槽位，不扩充 PE 或引入 Hook。
 - `src/operations/`：`convert_content_file`、文本清单编排与 exe 补丁文件操作，供 CLI/未来 GUI 共用。
+- 存档：`codec/save.cpp`负责EAGLS v2.0profile的解密、LZSS和容器无损重建；`operations/save_file.cpp`负责固定成员名的归档读写；公开`save.hpp`供CLI/GUI共用。版本、字段边界及独立证据见[eagls-save-v2.md](eagls-save-v2.md)。
 - `src/support/`：共享小端读写、MSVC 随机数、UTF-8 与文件读写/目标检查。
 - 图像、文本职责到对应功能开始时再细分，不先创建空目录和空类。
 

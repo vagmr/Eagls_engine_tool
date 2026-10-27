@@ -9,12 +9,15 @@ add_library(eagls_core STATIC
     support/codepage.cpp
     support/json_mini.cpp
     codec/content.cpp
+    codec/save.cpp
+    codec/save_state.cpp
     codec/gr_encode.cpp
     codec/text_map.cpp
     codec/pe_image.cpp
     codec/exe_patch.cpp
     codec/exe_typography.cpp
     operations/content_file.cpp
+    operations/save_file.cpp
     operations/text_workflow.cpp
     operations/exe_patch_file.cpp
 )

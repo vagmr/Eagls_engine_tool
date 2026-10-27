@@ -18,6 +18,21 @@ set(top_cases
     "unknown|2||--unknown"
 )
 
+set(save_cases
+    "save_help|0|用法：eagls+EAGLS v2|save --help"
+    "save_missing|2||save"
+    "save_unknown|2||save unknown"
+    "save_missing_out|2||save decrypt sample.sav"
+    "save_info_out|2||save info sample.sav --out a"
+    "save_wrong_kind|2||save info sample.sav --kind guess"
+    "save_kind_encrypt|2||save encrypt a --out b --kind global"
+    "save_store_info|2||save info sample.sav --store"
+    "save_missing_input|1||save info __missing_sample__.sav"
+    "save_state_missing_output|2||save state sample.sav"
+    "save_state_store|2||save state sample.sav --out a.json --store"
+    "save_state_wrong_kind|2||save state sample.sav --out a.json --kind guess"
+)
+
 set(content_cases
     "dat_help|0|用法：eagls|dat --help"
     "dat_missing|2||dat"
@@ -165,6 +180,8 @@ elseif(GROUP STREQUAL "pak")
     set(cases ${pak_cases})
 elseif(GROUP STREQUAL "exe")
     set(cases ${exe_cases})
+elseif(GROUP STREQUAL "save")
+    set(cases ${save_cases})
 else()
     message(FATAL_ERROR "未知测试组：${GROUP}")
 endif()

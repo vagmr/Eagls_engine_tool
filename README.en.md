@@ -34,6 +34,7 @@ The project starts from one principle: **every conclusion is validated against r
 | Images     | `gr decode`, `gr encode`              | Convert between GR and 24/32-bit BMP                                     |
 | Text       | `text extract`, `text apply`          | Extract a JSON text table; reinsert translations and rebuild DAT, with GBK support |
 | Executable | `exe check`, `exe patch`              | Apply the GBK Simplified Chinese display patch to EAGLS.exe / SAIMIN.exe, with optional Chinese typography (EAGLS only) |
+| Saves | `save info`, `save state`, `save decrypt`, `save encrypt` | EAGLS v2.0 inspection, partial state reports, decryption and lossless reconstruction |
 | GUI        | —                                     | Not integrated yet                                                       |
 
 ### Verification
@@ -45,14 +46,18 @@ All results below come from real samples. "Independent implementation" means a s
 - **Text**: the full table covers 187 DAT files, 17,414 text entries and 71 speakers; reinserting an unmodified table reproduces the original file byte-for-byte; the 10 GBK translations in `a001.dat` were verified in-game.
 - **Repacking**: with no replacement or an identical replacement, the rebuilt idx/pak is byte-identical to the original (regressions cover both the 28- and 40-byte record layouts); after replacing content the archive can be reopened and extracted again. Under the 40-byte record layout, replacing an entry with an empty file is rejected (a zero length would be taken as the engine's scan terminator).
 - **Executable**: the EAGLS 6-byte base GBK patch is verified in-game and byte-identical to the independent implementation; the SAIMIN 5-byte patch has passed byte-level localization (real sample + synthetic regressions) and cross-compiler output consistency checks, and is **awaiting in-game verification**.
+- **Saves**: 22 real EAGLS v2.0 saves passed independent comparison and byte-exact reconstruction; reencoding and selected field edits passed in-game save/reload tests. Real samples are used only for local verification and are not committed.
 
 ### Known limitations
 
 - Only a few games have been verified; other games, versions, and BM8 / palette images are not supported yet. The text table's source encoding currently supports cp932 only.
-- GR encoding and PAK repacking outputs have not been load-tested in-game yet. In-game verification so far covers only the chain "patched EAGLS.exe + rebuilt `a001.dat`"; the overall result after a full translation reinsertion has not been verified.
+- GR encoding and PAK repacking outputs have not been load-tested in-game yet. Script-localization verification so far covers only the chain "patched EAGLS.exe + rebuilt `a001.dat`"; the overall result after a full translation reinsertion has not been verified.
 - After patching, the whole game interprets text as GBK, so untranslated Japanese shows up as rare or garbled characters; use it together with a complete translation.
 - The font and typography effects of `--typography zh-cn` are still awaiting in-game verification, and it does not handle end-of-line kinsoku or grouping of consecutive punctuation.
+- Saves are verified only for EAGLS v2.0; state semantics remain partial (`partial_schema: true`). See the save guide for the exact compatibility scope.
 - No GUI yet.
+
+See the [EAGLS v2.0 save guide](docs/eagls-save-v2.md) for commands, format details and verification scope.
 
 ## Localization workflow
 
@@ -144,7 +149,7 @@ The core library target is `eagls_core`, linkable as `eagls::core`. There is cur
 ```text
 eagls                        Show help (same as --help, -h)
 eagls --version              Show the versions of eagls and the core library
-eagls <command-group> --help Show help for the pak, dat, gr, text and exe groups
+eagls <command-group> --help Show help for the pak, dat, gr, text, exe and save groups
 ```
 
 General conventions:
@@ -216,7 +221,7 @@ eagls_packer/
 │   ├── cli/           # Command-line program eagls
 │   └── gui/           # GUI integration boundary notes, no code yet
 ├── tests/             # Core and CLI tests
-│   └── fixtures/      # Sample conventions; real samples stay local and are never committed
+│   └── fixtures/      # Sample conventions; synthetic fixtures only; real samples stay local
 └── docs/              # Architecture design documents
 ```
 

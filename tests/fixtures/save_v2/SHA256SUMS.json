@@ -1,0 +1,18 @@
+{
+  "global/decrypted/block0.bin": "4f45415f16b6c36a2997e743e5bf5455507e70ccdbb80e2ddfd13a061e15f54f",
+  "global/decrypted/block0.lzss": "aff6fcde7f3893fbace6a399760e1e6ef2c48afaa2fde525ecf088a3bb57268a",
+  "global/decrypted/header.bin": "6a052dd174d48f7faae0d9753274e12f8e27f89db2d27dd5517bbff755113ace",
+  "global/decrypted/manifest.json": "e74a59710b0aa1cc7c463b3dfc1b4d6df0f9b9751e37b50af6b845f27456ef00",
+  "global/decrypted/seed.bin": "8de0b3c47f112c59745f717a626932264c422a7563954872e237b223af4ad643",
+  "global/decrypted/trailer.bin": "92ae800fe4274fb4935d1712c64701baebe2c17cc34ae04d1d450dff77429aca",
+  "global/example.sav": "c7325842bc22a91fb9a25fcdb8768c283ab49c3969f3af33871b8801ba17ff10",
+  "numbered/decrypted/block0.bin": "85fe74e330401fddb667d564966daee6a74cc5033737a597ecf7e55f164fcd4a",
+  "numbered/decrypted/block0.lzss": "13d54a2688fce0edbd75cd0459c4f5d587337f6b3492865991c558b40f9fb8d0",
+  "numbered/decrypted/block1.bin": "f09a0173765a00e127b0ea2e6b05564220484f2f658106dceba9fe6fb48df9d3",
+  "numbered/decrypted/block1.lzss": "2648383f0136ca7d5b44e26b917d6decfe67805d7f728e61f3bc6d4ee6d98c6f",
+  "numbered/decrypted/header.bin": "6a052dd174d48f7faae0d9753274e12f8e27f89db2d27dd5517bbff755113ace",
+  "numbered/decrypted/manifest.json": "cb7580a7f530e384193e119099a98b9b4b2616338e136ab10994c73bedd512ca",
+  "numbered/decrypted/seed.bin": "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e",
+  "numbered/decrypted/trailer.bin": "92ae800fe4274fb4935d1712c64701baebe2c17cc34ae04d1d450dff77429aca",
+  "numbered/example.sav": "f06a8e025ffdf03fd0984dd8102c55e0df8281b530158595828bf38d1dfdb6e5"
+}

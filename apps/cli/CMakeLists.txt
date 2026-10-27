@@ -4,6 +4,7 @@ add_executable(eagls_cli
     content_commands.cpp
     text_commands.cpp
     exe_commands.cpp
+    save_commands.cpp
 )
 set_target_properties(eagls_cli PROPERTIES OUTPUT_NAME eagls)
 target_link_libraries(eagls_cli PRIVATE eagls::core)

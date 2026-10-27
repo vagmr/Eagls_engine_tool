@@ -11,6 +11,7 @@
 #include "content_commands.hpp"
 #include "text_commands.hpp"
 #include "exe_commands.hpp"
+#include "save_commands.hpp"
 
 #include <eagls/version.hpp>
 
@@ -39,6 +40,10 @@ void print_help() {
         << "EAGLS Engine Tool（重启开发中）\n\n"
         << "用法：eagls <命令> [参数]\n\n"
         << "命令：\n"
+        << "  eagls save info <FILE.sav>               检查 EAGLS v2.0存档\n"
+        << "  eagls save state <FILE.sav> --out FILE.json  导出变量表与部分内部状态\n"
+        << "  eagls save decrypt <FILE.sav> --out DIR   解密/解压存档归档\n"
+        << "  eagls save encrypt <DIR> --out FILE.sav   无损重建存档；save --help 查看选项\n"
         << "  eagls pak info    <idx> <pak>             显示归档信息\n"
         << "  eagls pak list    <idx> <pak>             列出全部条目\n"
         << "  eagls pak extract <idx> <pak> [选项]      提取条目\n"
@@ -146,6 +151,11 @@ int main() {
     if (arguments[0] == "exe") {
         const std::vector<std::string> rest(arguments.begin() + 1, arguments.end());
         return cli::run_exe_command(rest);
+    }
+
+    if (arguments[0] == "save") {
+        const std::vector<std::string> rest(arguments.begin() + 1, arguments.end());
+        return cli::run_save_command(rest);
     }
 
     // 未实现的命令与非法参数明确失败，不返回伪成功。

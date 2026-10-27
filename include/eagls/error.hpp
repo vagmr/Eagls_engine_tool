@@ -16,7 +16,7 @@ enum class ErrorCode {
     unsafe_name,         // 条目名不能安全地作为输出目录下的单个文件名
     output_exists,       // 输出位置已有内容且未允许覆盖
     truncated_data,      // 读取内容不足以完成解析或解压
-    invalid_content,     // DAT/GR 内容不符合当前支持的格式
+    invalid_content,     // DAT/GR/存档内容不符合当前支持的格式
     resource_limit,      // 图像尺寸或文件大小超过工具的资源上限
 };
 

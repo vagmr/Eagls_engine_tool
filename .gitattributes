@@ -3,6 +3,13 @@
 ###############################################################################
 * text=auto
 
+# Save fixture bytes and their checksums must survive Windows checkout unchanged.
+tests/fixtures/save_v2/**/*.sav -text
+tests/fixtures/save_v2/**/*.bin -text
+tests/fixtures/save_v2/**/*.lzss -text
+tests/fixtures/save_v2/**/*.json text eol=lf
+tests/fixtures/save_v2/SHA256SUMS.json text eol=lf
+
 ###############################################################################
 # Set default behavior for command prompt diff.
 #
